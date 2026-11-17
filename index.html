@@ -113,24 +113,31 @@ Não espero que uma cartinha apague o que aconteceu, mas espero que ela consiga 
     <p class="small">uma pausa, um carinho e um pedido sincero.</p>
   </main>
   <script>
-    const button = document.getElementById('openLetter');
-    const letter = document.getElementById('letter');
-    const finalNote = document.getElementById('finalNote');
-    button.addEventListener('click', () => {
-      letter.classList.add('show');
-      finalNote.classList.add('show');
-      button.textContent = 'Com carinho, para você ❤️';
-      button.disabled = true;
-      button.style.opacity = '.8';
-      letter.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
 
-    document.getElementById('yesButton').addEventListener('click', () => {
-      document.getElementById('answerMessage').textContent =
-        'Obrigado por me dar a chance de ficar bem com você. Eu te amo! ❤️';
-      document.getElementById('yesButton').textContent = 'SIM! ❤️';
-    });
+const button = document.getElementById('openLetter');
+const letter = document.getElementById('letter');
+const finalNote = document.getElementById('finalNote');
 
+button.addEventListener('click', () => {
+  letter.classList.add('show');
+  finalNote.classList.add('show');
+
+  button.textContent = 'Com carinho, para você ❤️';
+  button.disabled = true;
+  button.style.opacity = '.8';
+
+  letter.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest'
+  });
+});
+
+document.getElementById('yesButton').addEventListener('click', () => {
+  document.getElementById('answerMessage').textContent =
+    'Obrigado por me dar a chance de ficar bem com você. Eu te amo! ❤️';
+
+  document.getElementById('yesButton').textContent = 'SIM! ❤️';
+});
 
 const noButton = document.getElementById('noButton');
 
@@ -158,7 +165,6 @@ noButton.addEventListener('click', (event) => {
   dodgeNo();
 });
 
-    });
   </script>
 </body>
 </html>
