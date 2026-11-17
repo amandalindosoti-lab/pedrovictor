@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8e8e8">
+  <title>Uma cartinha para você ❤️</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+    :root { --rose:#b86d78; --ink:#514044; --paper:#fffaf7; --pink:#f4dfe1; }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; color:var(--ink);
+      font-family:'DM Sans',sans-serif;
+      background: radial-gradient(circle at 15% 15%, #fff7f4 0, transparent 32%),
+                  radial-gradient(circle at 85% 80%, #f1d9df 0, transparent 35%),
+                  linear-gradient(135deg,#f8e9e7,#f3e1e4 55%,#f9efeb);
+      display:grid; place-items:center; padding:28px 16px; overflow-x:hidden;
+    }
+    .glow { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .float-heart { position:absolute; color:#d69aa2; opacity:.35; animation: drift 11s linear infinite; }
+    .float-heart:nth-child(1){left:8%;font-size:22px;animation-delay:-2s}
+    .float-heart:nth-child(2){left:84%;font-size:17px;animation-delay:-7s}
+    .float-heart:nth-child(3){left:68%;font-size:25px;animation-delay:-4s}
+    @keyframes drift { from{transform:translateY(110vh) rotate(0)} to{transform:translateY(-15vh) rotate(35deg)} }
+    .shell { width:min(100%,690px); position:relative; z-index:1; }
+    .topline { text-align:center; color:#986a70; letter-spacing:.19em; text-transform:uppercase; font-size:10px; margin-bottom:18px; }
+    .card {
+      background:rgba(255,250,247,.91); border:1px solid rgba(184,109,120,.18);
+      border-radius:26px; padding:clamp(28px,6vw,58px);
+      box-shadow:0 24px 80px rgba(112,65,76,.13); text-align:center;
+      backdrop-filter:blur(8px);
+    }
+    .heart { font-size:36px; display:inline-block; animation:pulse 1.8s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.13)} }
+    h1,h2 { font-family:'Playfair Display',serif; font-weight:500; }
+    h1 { font-size:clamp(35px,7vw,54px); line-height:1.12; margin:17px 0 14px; color:#754b53; }
+    .intro { max-width:440px; margin:0 auto; line-height:1.8; color:#806b6d; font-size:15px; }
+    button {
+      border:0; border-radius:999px; padding:14px 25px; margin-top:28px;
+      background:#a96370; color:white; font:600 13px 'DM Sans',sans-serif;
+      letter-spacing:.03em; cursor:pointer; box-shadow:0 8px 20px #a9637033;
+      transition:transform .2s,background .2s;
+    }
+    button:hover { transform:translateY(-2px); background:#925461; }
+    .letter { display:none; text-align:left; margin-top:34px; padding-top:28px; border-top:1px solid #ecd9d8; animation:appear .8s ease both; }
+    .letter.show { display:block; }
+    @keyframes appear { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    .letter h2 { text-align:center; font-size:30px; color:#80545c; margin:0 0 24px; }
+    .letter p { font-size:15px; line-height:1.95; color:#665558; margin:0 0 16px; }
+    .signature { text-align:center; font-family:'Playfair Display',serif; font-style:italic; font-size:23px!important; color:#a15e6b!important; margin-top:28px!important; }
+    .final-note { display:none; text-align:center; margin-top:26px; padding:22px 14px 4px; animation:appear .9s ease both; }
+    .final-note.show { display:block; }
+    .final-note p { font-family:'Playfair Display',serif; font-size:clamp(23px,5vw,30px); color:#9b5d69; line-height:1.4; margin:0; }
+    .small { font-size:11px; color:#aa8b8d; text-align:center; margin:20px 0 0; letter-spacing:.04em; }
+    .forgive { margin-top:26px; padding-top:22px; border-top:1px solid #ecd9d8; text-align:center; }
+    .question { font-family:'Playfair Display',serif; font-size:25px; color:#80545c; margin:0 0 8px; }
+    .answers { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:10px; }
+    .answers button { margin-top:12px; min-width:118px; }
+    .answers .no-button { background:#eadbdd; color:#805d63; box-shadow:none; }
+    .answer-message { min-height:24px; margin:15px 0 0; color:#9b5d69; font-size:14px; line-height:1.7; }
+    @media(max-width:480px){ .card{border-radius:20px} .letter p{font-size:14px} }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true">
+    <span class="float-heart">♡</span><span class="float-heart">♥</span><span class="float-heart">♡</span>
+  </div>
+  <main class="shell">
+    <div class="topline">feito com carinho, especialmente para você</div>
+    <section class="card">
+      <div class="heart">♡</div>
+      <h1>Pedro, essa cartinha é para você.</h1>
+      <p class="intro">Tem coisas que merecem mais do que uma mensagem rápida. E eu queria encontrar um jeitinho especial de te dizer o que talvez eu não consiga expressar tão bem no meio de uma conversa.</p>
+      <button id="openLetter" type="button">Abrir minha cartinha</button>
+
+      <article class="letter" id="letter">
+        <h2>Quero te pedir desculpas</h2>
+        <p>Meu amor, eu queria começar te pedindo desculpas, de coração. Não gosto de quando a gente briga, muito menos de terminar o dia com essa sensação ruim entre nós. Às vezes, no calor do momento, as coisas acabam saindo de um jeito diferente do que eu realmente gostaria, e eu sei que também preciso reconhecer a minha parte nisso.</p>
+        <p>Eu não quero ficar voltando sempre aos assuntos do passado, nem deixar que coisas que já aconteceram ocupem o espaço do que a gente ainda pode viver. Não significa que tudo seja simples ou que eu não sinta nada, mas eu quero aprender a conversar melhor, ouvir você e resolver as coisas sem transformar cada dificuldade em uma distância entre nós.</p>
+        <p>Eu te amo. E justamente por isso me importo tanto com a forma como a gente se trata. Não quero que o orgulho fale mais alto, nem que uma discussão faça parecer que o carinho desapareceu. Mesmo quando estou chateada, continuo tendo vontade de ficar bem com você.</p>
+        <p>Quero que a gente consiga conversar com calma, entender o lado um do outro e seguir em frente com mais cuidado. Não espero que tudo seja perfeito, só quero que exista vontade dos dois lados. Da minha parte, existe. Existe carinho, existe amor e existe vontade de fazer dar certo.</p>
+        <p>Se hoje a gente não conseguiu se entender, espero que depois consiga. Não quero dormir ou acordar carregando mágoa quando, no fundo, o que eu mais queria era estar em paz com você.</p>
+        <p class="signature">Com amor, de alguém que se importa muito com você. ♡</p>
+      </article>
+
+      <div class="final-note" id="finalNote">
+        <p>Se eu pudesse escolher de novo,<br> ainda escolheria você. ❤️</p>
+        <div class="forgive" id="forgive">
+          <p class="question">Você me perdoa? 🥺</p>
+          <div class="answers">
+            <button id="yesButton" type="button">SIM ❤️</button>
+            <button id="noButton" class="no-button" type="button">Ainda não</button>
+          </div>
+          <p class="answer-message" id="answerMessage" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+    <p class="small">uma pausa, um carinho e um pedido sincero.</p>
+  </main>
+  <script>
+    const button = document.getElementById('openLetter');
+    const letter = document.getElementById('letter');
+    const finalNote = document.getElementById('finalNote');
+    button.addEventListener('click', () => {
+      letter.classList.add('show');
+      finalNote.classList.add('show');
+      button.textContent = 'Com carinho, para você ❤️';
+      button.disabled = true;
+      button.style.opacity = '.8';
+      letter.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    document.getElementById('yesButton').addEventListener('click', () => {
+      document.getElementById('answerMessage').textContent =
+        'Obrigado por me dar a chance de ficar bem com você. Eu te amo! ❤️';
+      document.getElementById('yesButton').textContent = 'SIM! ❤️';
+    });
+
+    document.getElementById('noButton').addEventListener('click', () => {
+      document.getElementById('answerMessage').textContent =
+        'Eu entendo. Não quero te apressar. Só queria que você soubesse que meu pedido é sincero. ❤️';
+    });
+  </script>
+</body>
+</html>
